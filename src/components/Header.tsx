@@ -29,13 +29,10 @@ export function Header() {
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 pl-2">
           <div className="flex items-center">
-            <Image 
+            <img 
               src="/images/logo.jpg" 
               alt="Palate Sensations Logo" 
-              width={160}
-              height={40}
-              className="object-contain h-8 md:h-10 w-auto rounded-md" 
-              priority
+              className="object-contain h-8 md:h-12 w-auto rounded-md" 
             />
           </div>
         </Link>

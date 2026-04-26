@@ -20,12 +20,10 @@ export function Footer() {
           <div className="lg:col-span-2">
             <Link href="/" className="flex items-center gap-2 mb-6">
               <div className="flex items-center">
-                <Image 
+                <img 
                   src="/images/logo.jpg" 
                   alt="Palate Sensations Logo" 
-                  width={192}
-                  height={48}
-                  className="object-contain h-12 w-auto rounded-md" 
+                  className="object-contain h-12 md:h-16 w-auto rounded-md" 
                 />
               </div>
             </Link>
