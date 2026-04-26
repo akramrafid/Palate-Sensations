@@ -38,7 +38,7 @@ export async function GET(request: Request) {
     });
 
     // Format the response specifically for vendor integration
-    const availability = upcomingSessions.map(session => {
+    const availability = upcomingSessions.map((session: any) => {
       const capacity = session.template.maxParticipants;
       const booked = session._count.bookings;
       const availableSpots = Math.max(0, capacity - booked);
