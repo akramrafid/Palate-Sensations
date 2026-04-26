@@ -19,13 +19,13 @@ export function Footer() {
           {/* Logo & Info */}
           <div className="lg:col-span-2">
             <Link href="/" className="flex items-center gap-2 mb-6">
-              <div className="relative h-12 w-48 flex items-center">
+              <div className="flex items-center">
                 <Image 
                   src="/images/logo.jpg" 
-                  alt="Logo" 
-                  fill
-                  sizes="192px"
-                  className="object-contain object-left mix-blend-multiply" 
+                  alt="Palate Sensations Logo" 
+                  width={192}
+                  height={48}
+                  className="object-contain h-12 w-auto rounded-md" 
                 />
               </div>
             </Link>

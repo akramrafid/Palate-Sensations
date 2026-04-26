@@ -28,14 +28,13 @@ export function Header() {
       >
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 pl-2">
-          {/* Using mix-blend-multiply to nicely blend jpg logos with white backgrounds into the glassmorphism */}
-          <div className="relative h-10 w-40 flex items-center">
+          <div className="flex items-center">
             <Image 
               src="/images/logo.jpg" 
-              alt="Logo" 
-              fill
-              sizes="160px"
-              className="object-contain object-left mix-blend-multiply" 
+              alt="Palate Sensations Logo" 
+              width={160}
+              height={40}
+              className="object-contain h-8 md:h-10 w-auto rounded-md" 
               priority
             />
           </div>
