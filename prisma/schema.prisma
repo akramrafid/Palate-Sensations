@@ -1,0 +1,172 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  role          Role      @default(CUSTOMER)
+  
+  // Custom Profile Data
+  phone         String?
+  pointsBalance Int       @default(0)
+  memberSince   DateTime  @default(now())
+
+  // Relations
+  bookings      Booking[]
+  transactions  Transaction[]
+  instructedClasses ClassSession[] @relation("InstructorToClass")
+
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+enum Role {
+  CUSTOMER
+  STAFF
+  ADMIN
+}
+
+model ClassTemplate {
+  id              String         @id @default(cuid())
+  title           String
+  description     String
+  category        String
+  duration        Int            // Duration in minutes
+  skillLevel      String
+  basePrice       Float
+  maxParticipants Int
+  imageSrc        String?
+  
+  sessions        ClassSession[]
+  
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+}
+
+model ClassSession {
+  id              String         @id @default(cuid())
+  templateId      String
+  template        ClassTemplate  @relation(fields: [templateId], references: [id])
+  
+  date            DateTime
+  instructorId    String?
+  instructor      User?          @relation("InstructorToClass", fields: [instructorId], references: [id])
+  
+  // Custom overrides for specific sessions
+  customPrice     Float?
+  
+  bookings        Booking[]
+  
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+}
+
+model Booking {
+  id              String         @id @default(cuid())
+  sessionId       String
+  session         ClassSession   @relation(fields: [sessionId], references: [id])
+  
+  userId          String?
+  user            User?          @relation(fields: [userId], references: [id])
+  
+  guestName       String?
+  guestEmail      String?
+  
+  participants    Int            @default(1)
+  status          BookingStatus  @default(PENDING)
+  totalAmount     Float
+  
+  transactionId   String?        @unique
+  transaction     Transaction?   @relation(fields: [transactionId], references: [id])
+  
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+}
+
+enum BookingStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+  ATTENDED
+  WAITLISTED
+}
+
+model Transaction {
+  id              String            @id @default(cuid())
+  userId          String?
+  user            User?             @relation(fields: [userId], references: [id])
+  
+  amount          Float
+  status          TransactionStatus @default(PENDING)
+  provider        PaymentProvider   @default(STRIPE)
+  providerRef     String?           // e.g., Stripe Checkout Session ID
+  
+  booking         Booking?
+  
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+}
+
+enum TransactionStatus {
+  PENDING
+  COMPLETED
+  FAILED
+  REFUNDED
+}
+
+enum PaymentProvider {
+  STRIPE
+  PAYNOW
+  APPLE_PAY
+  MANUAL
+}
+
+model PromoCode {
+  id              String   @id @default(cuid())
+  code            String   @unique
+  discountType    DiscountType
+  discountValue   Float
+  
+  maxUses         Int?
+  currentUses     Int      @default(0)
+  
+  validFrom       DateTime @default(now())
+  validUntil      DateTime?
+  
+  isActive        Boolean  @default(true)
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+enum DiscountType {
+  PERCENTAGE
+  FIXED_AMOUNT
+}
+
+model Voucher {
+  id              String   @id @default(cuid())
+  code            String   @unique
+  balance         Float
+  originalAmount  Float
+  
+  purchaserName   String?
+  purchaserEmail  String?
+  recipientName   String?
+  recipientEmail  String?
+  
+  validUntil      DateTime
+  isActive        Boolean  @default(true)
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}

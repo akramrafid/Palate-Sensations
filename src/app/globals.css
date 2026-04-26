@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+:root {
+  /* Brand Colors */
+  --color-burgundy: #6B1C2B;
+  --color-gold: #C9A84C;
+  --color-cream: #F7F3ED;
+  --color-espresso: #1E1208;
+  --color-warm-gray: #8C7B6E;
+  --color-light-gold: #F0E3C0;
+  --color-terracotta: #C46B3C;
+  --color-herb-green: #4A5240;
+  --color-parchment: #F0E3C0;
+}
+
+@theme inline {
+  --color-brand-burgundy: var(--color-burgundy);
+  --color-brand-gold: var(--color-gold);
+  --color-brand-cream: var(--color-cream);
+  --color-brand-espresso: var(--color-espresso);
+  --color-brand-warm-gray: var(--color-warm-gray);
+  --color-brand-light-gold: var(--color-light-gold);
+  --color-brand-terracotta: var(--color-terracotta);
+  --color-brand-herb-green: var(--color-herb-green);
+  --color-brand-parchment: var(--color-parchment);
+
+  --font-playfair: var(--font-playfair-display), serif;
+  --font-lato: var(--font-lato), sans-serif;
+}
+
+body {
+  background-color: var(--color-cream);
+  color: var(--color-espresso);
+  font-family: var(--font-lato), sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom utility classes if needed */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
