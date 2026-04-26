@@ -21,7 +21,7 @@ export function Footer() {
             <Link href="/" className="flex items-center gap-2 mb-6">
               <div className="flex items-center">
                 <img 
-                  src="/images/logo.jpg" 
+                  src="/images/logo.png" 
                   alt="Palate Sensations Logo" 
                   className="object-contain h-12 md:h-16 w-auto rounded-md" 
                 />

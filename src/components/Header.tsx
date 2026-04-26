@@ -30,7 +30,7 @@ export function Header() {
         <Link href="/" className="flex items-center gap-2 pl-2">
           <div className="flex items-center">
             <img 
-              src="/images/logo.jpg" 
+              src="/images/logo.png" 
               alt="Palate Sensations Logo" 
               className="object-contain h-8 md:h-12 w-auto rounded-md" 
             />
