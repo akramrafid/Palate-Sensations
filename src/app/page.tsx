@@ -218,9 +218,9 @@ export default function Home() {
       </div>
 
       {/* Massive Footer Title */}
-      <div className="w-full overflow-hidden mt-16 px-4 md:px-8">
-         <h1 className="text-[18vw] font-bold tracking-tighter leading-none text-center text-brand-espresso whitespace-nowrap opacity-90">
-           PalateSensation
+      <div className="w-full overflow-hidden mt-16 px-12 md:px-4">
+         <h1 className="text-[18vw] font-bold tracking-tighter leading-none text-center text-brand-espresso whitespace-nowrap opacity-80">
+           Palate Sensation
          </h1>
       </div>
     </div>
